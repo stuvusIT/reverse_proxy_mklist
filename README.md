@@ -35,7 +35,6 @@ domain_prefixes:
   - www
 domain_suffixes:
   - example.com
-interfaces:
 ```
 
 `web01.yml`:
