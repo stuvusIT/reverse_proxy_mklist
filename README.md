@@ -79,7 +79,7 @@ domain_suffixes:
 proxy_domains:
   - target_description: Webserver 1 for public usage ( testing )
     target_host: web01
-	target_ip: 192.168.0.2
+    target_ip: 192.168.0.2
 	served_domains:
       - domains:
         - test
