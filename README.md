@@ -26,7 +26,7 @@ A running webserver at all target hosts, see [reverse proxy](https://github.com/
 ## Example Playbook
 
 ### Vars:
-`reverse_proxy_sever01.yml`:
+`reverse_proxy_server01.yml`:
 ```yml
 description: Reverse Proxy
 letsencrypt_email: fuu@example.com
