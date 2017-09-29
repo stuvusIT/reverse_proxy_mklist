@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# vim: sw=2 ts=2 ft=python
 # This script generates reverse proxy facts out of the hostvars
 import json
 import optparse
@@ -41,6 +42,10 @@ def generateFacts(original_facts, reverse_proxy_host):
     # Skip and report if no description is set
     if 'description' not in config:
       failed_names['description'].append(host)
+      continue
+
+    # Skip hosts to ignore
+    if host in facts['ignore_hosts']:
       continue
 
     # Skip and report error if no connection IP is set
