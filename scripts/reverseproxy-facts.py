@@ -45,7 +45,7 @@ def generateFacts(original_facts, reverse_proxy_host):
       continue
 
     # Skip hosts to ignore
-    if host in facts['ignore_hosts']:
+    if 'ignore_hosts' in facts and host in facts['ignore_hosts']:
       continue
 
     # Skip and report error if no connection IP is set
