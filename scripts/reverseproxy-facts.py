@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# vim: sw=2 ts=2 ft=python
+# vi:sw=2:ts=2:ft=python:et
 # This script generates reverse proxy facts out of the hostvars
 import json
 import optparse
