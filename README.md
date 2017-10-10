@@ -13,7 +13,7 @@ A running webserver at all target hosts, see [reverse proxy](https://github.com/
 #### Primary
 | Option         | Type            | Default | Description                                                                   | Required |
 |----------------|-----------------|---------|-------------------------------------------------------------------------------|:--------:|
-| ignore_domains | list of strings |         | Domains which should be ignored(no fact for the reverse proxy should be set). |     N    |
+| ignore_domains | list of strings | `[]`    | Domains which should be ignored(no fact for the reverse proxy should be set). |     N    |
 | ignore_hosts   | list of strings | `[]`    | list of ansible hosts to ignore                                               |     N    |
 
 ### At host vars, who serve some sites (target server)

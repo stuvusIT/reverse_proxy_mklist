@@ -57,11 +57,15 @@ def generateFacts(original_facts, reverse_proxy_host):
     if any(d['target_host'] == host for d in facts['proxy_domains']):
       continue
 
+    # Define ignore_domains if not already defined
+    if 'ignore_domains' not in facts:
+      facts['ignore_domains'] = []
+
     served_domains = {
         'target_host': host,
         'target_description': config['description'],
         'target_ip': config['ansible_host'],
-        'served_domains': config['served_domains']
+        'served_domains': [ domain for domain in config['served_domains'] if domain not in facts['ignore_domains'] ] # Filter out every domain in ignore_domains
     }
 
     facts['proxy_domains'].append(served_domains)
