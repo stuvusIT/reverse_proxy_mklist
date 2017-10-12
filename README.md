@@ -13,14 +13,14 @@ A running webserver at all target hosts, see [reverse proxy](https://github.com/
 #### Primary
 | Option         | Type            | Default | Description                                                                   | Required |
 |----------------|-----------------|---------|-------------------------------------------------------------------------------|:--------:|
-| ignore_domains | list of strings |         | Domains which should be ignored(no fact for the reverse proxy should be set). |     N    |
-| ignore_hosts   | list of strings |         | list of ansible hosts to ignore                                               |     N    |
+| ignore_domains | list of strings | `[]`    | Domains which should be ignored(no fact for the reverse proxy should be set). |     N    |
+| ignore_hosts   | list of strings | `[]`    | list of ansible hosts to ignore                                               |     N    |
 
 ### At host vars, who serve some sites (target server)
 #### Primary
 | Option         | Type          | Default | Description                                                                                       | Required |
 |----------------|---------------|---------|---------------------------------------------------------------------------------------------------|:--------:|
-| served_domains | list of dicts |         | See [reverse_proxy](https://github.com/stuvusIT/reverse_proxy#served_domains) for possible values | Y        |
+| served_domains | list of dicts |         | See [reverse_proxy](https://github.com/stuvusIT/reverse_proxy#served_domains) for possible values |     Y    |
 
 
 ## Example Playbook

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# vi:sw=2:ts=2:ft=python:et
 # This script generates reverse proxy facts out of the hostvars
 import json
 import optparse
@@ -43,6 +44,10 @@ def generateFacts(original_facts, reverse_proxy_host):
       failed_names['description'].append(host)
       continue
 
+    # Skip hosts to ignore
+    if 'ignore_hosts' in facts and host in facts['ignore_hosts']:
+      continue
+
     # Skip and report error if no connection IP is set
     if 'ansible_host' not in config:
       failed_names['ip'].append(host)
@@ -52,11 +57,15 @@ def generateFacts(original_facts, reverse_proxy_host):
     if any(d['target_host'] == host for d in facts['proxy_domains']):
       continue
 
+    # Define ignore_domains if not already defined
+    if 'ignore_domains' not in facts:
+      facts['ignore_domains'] = []
+
     served_domains = {
         'target_host': host,
         'target_description': config['description'],
         'target_ip': config['ansible_host'],
-        'served_domains': config['served_domains']
+        'served_domains': [ domain for domain in config['served_domains'] if domain not in facts['ignore_domains'] ] # Filter out every domain in ignore_domains
     }
 
     facts['proxy_domains'].append(served_domains)
