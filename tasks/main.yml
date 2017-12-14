@@ -1,16 +1,30 @@
 ---
+- name: Create temporary hostvars file
+  tempfile:
+    state: file
+    suffix: json
+  register: tempfile
+  changed_when: False
+
 - name: Write hostvars to file
   copy:
     content: "{{ hostvars }}"
-    dest: "/tmp/reverse_proxy_hostvars"
+    dest: "{{ tempfile.path }}"
+  changed_when: False
 
 - name: Run reverseproxy-facts script
   script: "scripts/reverseproxy-facts.py {{ ansible_hostname }} /tmp/reverse_proxy_hostvars"
   register: reverseproxy_factgen
+  changed_when: False
 
 - name: Set domain facts
   set_fact:
     proxy_domains: "{{ (reverseproxy_factgen.stdout|from_json).new_hostvars.proxy_domains }}"
+
+- name: Remove temporary hostvars file
+  file:
+    path: tempfile.path
+    state: absent
 
 - name: "There are {{ (reverseproxy_factgen.stdout|from_json).failed_hosts.ip|length }} hosts without a connection IP"
   fail:
