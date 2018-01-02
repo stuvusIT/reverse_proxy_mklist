@@ -13,7 +13,7 @@
   changed_when: False
 
 - name: Run reverseproxy-facts script
-  script: "scripts/reverseproxy-facts.py {{ ansible_hostname }} /tmp/reverse_proxy_hostvars"
+  script: "scripts/reverseproxy-facts.py {{ ansible_hostname }} {{ tempfile.path }}"
   register: reverseproxy_factgen
   changed_when: False
 
