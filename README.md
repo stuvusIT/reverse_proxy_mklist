@@ -9,18 +9,23 @@ A running webserver at all target hosts, see [reverse proxy](https://github.com/
 
 ## Role Variables
 
-### At host or group vars, where this script is applied(who runs the reverse proxy)
-#### Primary
+### At host or group vars, where this script is applied (the host that runs the reverse proxy)
+
 | Option         | Type            | Default | Description                                                                   | Required |
 |----------------|-----------------|---------|-------------------------------------------------------------------------------|:--------:|
-| ignore_domains | list of strings | `[]`    | Domains which should be ignored(no fact for the reverse proxy should be set). |     N    |
 | ignore_hosts   | list of strings | `[]`    | list of ansible hosts to ignore                                               |     N    |
 
 ### At host vars, who serve some sites (target server)
-#### Primary
+
 | Option         | Type          | Default | Description                                                                                       | Required |
 |----------------|---------------|---------|---------------------------------------------------------------------------------------------------|:--------:|
 | served_domains | list of dicts |         | See [reverse_proxy](https://github.com/stuvusIT/reverse_proxy#served_domains) for possible values |     Y    |
+
+### Inside the served_domains of a host
+
+| Option             | Type    | Default | Description                             | Required |
+|--------------------|---------|---------|-----------------------------------------|:--------:|
+| reverse_proxy_skip | boolean | `false` | Skip this served domain from generation | N        |
 
 
 ## Example Playbook
