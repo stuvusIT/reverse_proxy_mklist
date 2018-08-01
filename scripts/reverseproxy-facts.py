@@ -65,7 +65,7 @@ def generateFacts(original_facts, reverse_proxy_host):
         'target_host': host,
         'target_description': config['description'],
         'target_ip': config['ansible_host'],
-        'served_domains': [ domain for domain in config['served_domains'] if domain not in facts['ignore_domains'] ] # Filter out every domain in ignore_domains
+        'served_domains': [ domain for domain in config['served_domains'] if not ('reverse_proxy_skip' in domain and domain['reverse_proxy_skip']) ] # Filter out every domain in ignore_domains
     }
 
     facts['proxy_domains'].append(served_domains)
@@ -73,7 +73,6 @@ def generateFacts(original_facts, reverse_proxy_host):
   # Return the result, consisting of the failed hosts and the extended hostvars
   result = {'failed_hosts': failed_names, 'new_hostvars': facts}
   return result
-
 
 if __name__ == "__main__":
   main()
