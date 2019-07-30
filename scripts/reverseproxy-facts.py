@@ -64,7 +64,7 @@ def generateFacts(original_facts, reverse_proxy_host):
     served_domains = {
         'target_host': host,
         'target_description': config['description'],
-        'target_ip': config['ansible_host'],
+        'target_ip': config['reverse_proxy_target'] if 'reverse_proxy_target' in config else config['ansible_host'],
         'served_domains': [ domain for domain in config['served_domains'] if not ('reverse_proxy_skip' in domain and domain['reverse_proxy_skip']) ] # Filter out every domain in ignore_domains
     }
 
