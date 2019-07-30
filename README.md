@@ -11,16 +11,17 @@ A running webserver at all target hosts, see [reverse proxy](https://github.com/
 
 ### At host or group vars, where this script is applied (the host that runs the reverse proxy)
 
-| Option         | Type            | Default | Description                                                                   | Required |
-|----------------|-----------------|---------|-------------------------------------------------------------------------------|:--------:|
-| ignore_hosts   | list of strings | `[]`    | list of ansible hosts to ignore                                               |     N    |
+| Option                             | Type            | Default | Description                       | Required                           |
+|------------------------------------|-----------------|---------|-----------------------------------|:----------------------------------:|
+| ignore_hosts                       | list of strings | `[]`    | list of ansible hosts to ignore   | N                                  |
+| `reverse_proxy_mklist_host_suffix` | string          |         | Suffix to append to all hostnames | if hosts are accessed via hostname |
 
 ### At host vars, who serve some sites (target server)
 
-| Option               | Type          | Default            | Description                                                                                       | Required |
-|----------------------|---------------|--------------------|---------------------------------------------------------------------------------------------------|:--------:|
-| served_domains       | list of dicts |                    | See [reverse_proxy](https://github.com/stuvusIT/reverse_proxy#served_domains) for possible values | Y        |
-| reverse_proxy_target | string        | `{{ansible_host}}` | Host to connect to for proxying                                                                   | N        |
+| Option                      | Type          | Default | Description                                                                                       | Required |
+|-----------------------------|---------------|---------|---------------------------------------------------------------------------------------------------|:--------:|
+| served_domains              | list of dicts |         | See [reverse_proxy](https://github.com/stuvusIT/reverse_proxy#served_domains) for possible values | Y        |
+| reverse_proxy_mklist_via_ip | boolean       | `false` | Whether this host should be contacted via IP instead of the hostname                              | N        |
 
 ### Inside the served_domains of a host
 
