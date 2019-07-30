@@ -61,10 +61,13 @@ def generateFacts(original_facts, reverse_proxy_host):
     if 'ignore_domains' not in facts:
       facts['ignore_domains'] = []
 
+    via_ip = 'reverse_proxy_mklist_via_ip' in config and config['reverse_proxy_mklist_via_ip']
+    target_ip = config['ansible_host'] if via_ip else (host + facts['reverse_proxy_mklist_host_suffix'])
+
     served_domains = {
         'target_host': host,
         'target_description': config['description'],
-        'target_ip': config['reverse_proxy_target'] if 'reverse_proxy_target' in config else config['ansible_host'],
+        'target_ip': target_ip,
         'served_domains': [ domain for domain in config['served_domains'] if not ('reverse_proxy_skip' in domain and domain['reverse_proxy_skip']) ] # Filter out every domain in ignore_domains
     }
 
