@@ -18,10 +18,11 @@ A running webserver at all target hosts, see [reverse proxy](https://github.com/
 
 ### At host vars, who serve some sites (target server)
 
-| Option                      | Type          | Default | Description                                                                                       | Required |
-|-----------------------------|---------------|---------|---------------------------------------------------------------------------------------------------|:--------:|
-| served_domains              | list of dicts |         | See [reverse_proxy](https://github.com/stuvusIT/reverse_proxy#served_domains) for possible values | Y        |
-| reverse_proxy_mklist_via_ip | boolean       | `false` | Whether this host should be contacted via IP instead of the hostname                              | N        |
+| Option                               | Type          | Default | Description                                                                                       | Required |
+| ------------------------------------ | ------------- | ------- | ------------------------------------------------------------------------------------------------- | :------: |
+| served_domains                       | list of dicts |         | See [reverse_proxy](https://github.com/stuvusIT/reverse_proxy#served_domains) for possible values |    Y     |
+| reverse_proxy_mklist_override_target | string        |         | When defined, defines the hostname or IP that is used as an upstream for this host                |    N     |
+| reverse_proxy_mklist_via_ip          | boolean       | `false` | Whether this host should be contacted via IP instead of the hostname                              |    N     |
 
 ### Inside the served_domains of a host
 
